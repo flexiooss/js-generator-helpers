@@ -4,13 +4,15 @@
  * @return {ReadonlyArray<any>}
  */
 export const deepFreeze = (object) => {
-  let propNames = Object.getOwnPropertyNames(object)
-  propNames.forEach((name) => {
-    let prop = object[name]
-    if (typeof prop === 'object' && prop !== null && !Object.isFrozen(prop)) {
-      deepFreeze(prop)
-    }
-  })
+  if (typeof object === 'object' && object !== null) {
+    let propNames = Object.getOwnPropertyNames(object)
+    propNames.forEach((name) => {
+      let prop = object[name]
+      if (typeof prop === 'object' && prop !== null && !Object.isFrozen(prop)) {
+        deepFreeze(prop)
+      }
+    })
+  }
   return Object.freeze(object)
 }
 
@@ -20,13 +22,15 @@ export const deepFreeze = (object) => {
  * @returns {Object}
  */
 export const deepSeal = (object) => {
-  let propNames = Object.getOwnPropertyNames(object)
-  propNames.forEach((name) => {
-    let prop = object[name]
-    if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop)) {
-      deepSeal(prop)
-    }
-  })
+  if (typeof object === 'object' && object !== null) {
+    let propNames = Object.getOwnPropertyNames(object)
+    propNames.forEach((name) => {
+      let prop = object[name]
+      if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop)) {
+        deepSeal(prop)
+      }
+    })
+  }
   return Object.seal(object)
 }
 
@@ -39,13 +43,15 @@ export const deepSeal = (object) => {
  * @export
  */
 export const deepFreezeSeal = (object) => {
-  let propNames = Object.getOwnPropertyNames(object)
-  propNames.forEach((name) => {
-    let prop = object[name]
-    if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop) && !Object.isFrozen(prop)) {
-      deepFreezeSeal(prop)
-    }
-  })
+  if (typeof object === 'object' && object !== null) {
+    let propNames = Object.getOwnPropertyNames(object)
+    propNames.forEach((name) => {
+      let prop = object[name]
+      if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop) && !Object.isFrozen(prop)) {
+        deepFreezeSeal(prop)
+      }
+    })
+  }
   return Object.freeze(Object.seal(object))
 }
 
