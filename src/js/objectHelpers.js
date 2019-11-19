@@ -1,14 +1,16 @@
 /**
  *
  * @param {Object} object
- * @return {ReadonlyArray<any>}
+ * @return {Object}
  */
+import {isObject} from '@flexio-oss/assert'
+
 export const deepFreeze = (object) => {
-  if (typeof object === 'object' && object !== null) {
+  if (isObject(object)) {
     let propNames = Object.getOwnPropertyNames(object)
     propNames.forEach((name) => {
       let prop = object[name]
-      if (typeof prop === 'object' && prop !== null && !Object.isFrozen(prop)) {
+      if (isObject(prop) && !Object.isFrozen(prop)) {
         deepFreeze(prop)
       }
     })
@@ -22,11 +24,11 @@ export const deepFreeze = (object) => {
  * @returns {Object}
  */
 export const deepSeal = (object) => {
-  if (typeof object === 'object' && object !== null) {
+  if (isObject(object)) {
     let propNames = Object.getOwnPropertyNames(object)
     propNames.forEach((name) => {
       let prop = object[name]
-      if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop)) {
+      if (isObject(prop) && !Object.isSealed(prop)) {
         deepSeal(prop)
       }
     })
@@ -43,11 +45,11 @@ export const deepSeal = (object) => {
  * @export
  */
 export const deepFreezeSeal = (object) => {
-  if (typeof object === 'object' && object !== null) {
+  if (isObject(object)) {
     let propNames = Object.getOwnPropertyNames(object)
     propNames.forEach((name) => {
       let prop = object[name]
-      if (typeof prop === 'object' && prop !== null && !Object.isSealed(prop) && !Object.isFrozen(prop)) {
+      if (isObject(prop) && !Object.isSealed(prop) && !Object.isFrozen(prop)) {
         deepFreezeSeal(prop)
       }
     })
