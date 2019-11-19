@@ -13,7 +13,8 @@ export class TestObjectHelpers extends TestCase {
   testDeepFreeze() {
     let o = {
       'a': {
-        'a1': 1
+        'a1': 1,
+        'a2': null
       },
       'b': 'plok'
     }
