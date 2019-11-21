@@ -10,7 +10,7 @@
     "code-altimeter-js": "https://github.com/flexiooss/code-altimeter-js.git"
   },
   "dependencies": {
-    "@flexio-oss/assert": "0.1.0"
+    "@flexio-oss/assert": "0.2.0-dev"
   },
   "hotballoon-shed": {
     "build": {
