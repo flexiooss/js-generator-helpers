@@ -46,13 +46,36 @@ export const deepSeal = (object) => {
  */
 export const deepFreezeSeal = (object) => {
   if (isObject(object)) {
-    let propNames = Object.getOwnPropertyNames(object)
-    propNames.forEach((name) => {
-      let prop = object[name]
-      if (isObject(prop) && !Object.isSealed(prop) && !Object.isFrozen(prop)) {
-        deepFreezeSeal(prop)
+
+    if ((object instanceof Map || object instanceof Set) && !Object.isSealed(object) && !Object.isFrozen(object)) {
+      object.forEach((v) => {
+        deepFreezeSeal(v)
+      })
+
+      object.set = function(key) {
+        throw new Error('Can\'t add property ' + key + ', map/set is not extensible')
       }
-    })
+
+      object.add = function(key) {
+        throw new Error('Can\'t add property ' + key + ', map/set is not extensible')
+      }
+
+      object.delete = function(key) {
+        throw new Error('Can\'t delete property ' + key + ', map/set is frozen')
+      }
+
+      object.clear = function() {
+        throw new Error('Can\'t clear map, map/set is frozen')
+      }
+    } else {
+      let propNames = Object.getOwnPropertyNames(object)
+      propNames.forEach((name) => {
+        let prop = object[name]
+        if (isObject(prop) && !Object.isSealed(prop) && !Object.isFrozen(prop) && Object.getOwnPropertyDescriptor(object, name).writable) {
+          deepFreezeSeal(prop)
+        }
+      })
+    }
   }
   return Object.freeze(Object.seal(object))
 }
