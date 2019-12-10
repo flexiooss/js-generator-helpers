@@ -1,6 +1,6 @@
 {
   "name": "@flexio-oss/js-generator-helpers",
-  "version": "0.2.0-dev",
+  "version": "0.2.0",
   "main": "index.js",
   "module": "index.js",
   "repository": "git@github.com:flexiooss/js-generator-helpers.git",
