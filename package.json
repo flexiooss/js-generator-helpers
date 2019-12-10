@@ -1,6 +1,6 @@
 {
   "name": "@flexio-oss/js-generator-helpers",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "index.js",
   "module": "index.js",
   "repository": "git@github.com:flexiooss/js-generator-helpers.git",
@@ -10,7 +10,7 @@
     "code-altimeter-js": "https://github.com/flexiooss/code-altimeter-js.git"
   },
   "dependencies": {
-    "@flexio-oss/assert": "0.1.0"
+    "@flexio-oss/assert": "0.2.0"
   },
   "hotballoon-shed": {
     "build": {
